@@ -1,0 +1,93 @@
+body {
+    background-color: rgb(131, 131, 131);
+    font-family: sans-serif;
+    
+}
+.top-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(57, 62, 70);
+    border-radius: 14px;
+}
+.top-bar li {
+    display: inline;
+}
+.top-bar a {
+    display: block;
+    float: left;
+    border-right: rgb(238, 238, 238) 2px hidden ;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+.top-bar a:hover {
+    opacity: 0.5;
+    background-color: cadetblue;
+    border-radius: 14px;
+}
+.active {
+    display: block;
+    border-radius: 14px;
+    background-color: cornflowerblue;
+}
+.container {
+    padding-top: 30px; ;
+    width: 70%;
+    height: auto;
+    margin-left: 15%;
+    margin-right: 10%;
+    background-color: #242228;
+    color: white;
+}
+.product {
+    margin-left: 10% ;
+    margin-right: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 10%;
+}
+.product h2 {
+    padding: 10px;
+    display: block;
+    border-radius: 14px;
+    background-color: cornflowerblue;
+    text-align: center;
+    font-size: 30px;
+}
+.product h3 {
+    padding: 10px;
+    display: block;
+    border-radius: 14px;
+    background-color: cornflowerblue;
+    border-style: outset;
+    border-color: #E2DCC8;
+    border-width: 5px;
+}
+.product table {
+    padding-bottom: 30px;
+    margin-left: 25%;
+}
+.product td{
+    padding-right: 40px;
+    text-align: left;
+}
+.product img {
+    margin-left: 10%;
+    width: 500px;
+}
+.product p {
+    font-size: 18px;
+}
+footer {
+    text-align: center;
+    background-color: #242228;
+    color: white;
+    padding: 20px;
+    width: 67.35%;
+    height: auto;
+    margin-left: 15%;
+    
+}
