@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="#">
+    <title>Yapılacaklar Listesi</title>
+  </head>
+  <body>
+<!-- Toast Start task -->
+<div class="position-fixed bottom-0 right-0 p-3" 
+style="z-index: 5; right: 0; top: 0;">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" 
+  aria-atomic="true" data-delay="6000">
+    <div class="toast-header">
+      <strong class="mr-auto">Kodluyoruz </strong>
+      <span id="toast-img"></span>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" 
+      aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body font-weight-bold">
+    </div>
+  </div>
+</div>
+<!-- Toast End For task -->
+    <!-- Container Start -->
+    <div class="container col-sm-8  mt-5">
+      <div class="row text-center  d-block">
+        <!-- Header Start -->
+        <div class="header my-3 rounded ">
+          <img
+            src="https://cdn.sanity.io/images/9kdepi1d/production/65c832d202a503b15d99e628f4313782f3ef50db-300x62.png"
+            class="mb-1"
+            alt=""
+          />
+          <h2>Yapılacaklar Listesi</h2>
+        
+          <div id="searchBar" class="input-group">
+            
+            <input class="input-group rounded-left d-inline" type="text" 
+            name="task" id="task" placeholder="Bugün ne yapacaksın?" />
+            <div class="input-group-append">
+              <button class="btn btn-primary" onclick="newElement()" id="liveToastBtn">Ekle</button>
+          </div>
+        </div>
+      </div>
+      <!-- Header End -->
+      <!-- Task List Start -->
+        <ul class="list-group" id="list">
+        </ul>
+        <!-- Task List End -->
+        <script
+          src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+          crossorigin="anonymous"
+        ></script>
+        <script src="js/app.js"></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+          crossorigin="anonymous"
+        ></script>
+      
+    </div>
+  </div>
+  <!-- Container End -->
+  </body>
+</html>
