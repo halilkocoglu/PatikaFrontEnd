@@ -8,18 +8,20 @@ type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span class=" font-weight-bold" aria-hidden="true">&times;</span>
 </button>`
 let taskList = !localStorage.getItem('tasks') ?  [] : (localStorage.getItem('tasks').split(','));
-// console.log(taskList)
+console.log(taskList)
 // console.log(taskList.length)
 
 //get the list of tasks in local storage
 if(taskList.length>0){
-    for (let i=0; i < taskList.length; i++) {
+    let i = 0;
+    for (; i < taskList.length; i++) {
         if(checkForText(taskList[i])){
-            TASK.value = taskList[i];
+            TASK.value = taskList[i].toLowerCase();
             const liDOM = document.createElement('li');
-            liDOM.innerHTML = `<img data-img="checkImg" style="width: 15px;" 
+            liDOM.innerHTML = `<img data-img="checkImg" style="width: 15px" 
             src="img/check-solid.svg" class="rounded  d-none" alt="">
-            <p class="text-center text-capitalize">${TASK.value}</p> ${collapseBtn}`;
+            <p class="text-center text-capitalize">${TASK.value}</p> ${collapseBtn}
+            `;
             liDOM.classList.add('list-group-item','d-flex', 
             'justify-content-between', 'align-items-center');
             liDOM.setAttribute('data-text',TASK.value);
@@ -55,17 +57,17 @@ async function newElement (){
         }else{          //if value is not in the list, add it to the list
             liDOM.innerHTML = `<img data-img="checkImg" style="width: 15px;" 
             src="img/check-solid.svg" class="rounded d-none " alt="">
-            <p class="float-left d-flex">${TASK.value}</p> ${collapseBtn}
+            <p class="text-center text-capitalize">${TASK.value}</p> ${collapseBtn}
             `;
             liDOM.classList.add('list-group-item','d-flex', 
             'justify-content-between', 'align-items-center');
             liDOM.setAttribute('data-text',TASK.value);
             ulEl.append(liDOM);
-            taskList.push(TASK.value.trim());
+            taskList.push(TASK.value.trim().toLowerCase());
             localStorage.setItem('tasks',(taskList));
             //************************************ */
             //toast
-            toastBody.innerHTML = `<p class= "text-success">Görev listeye eklendi.</p>`;
+            toastBody.innerHTML = `<p class= "text-success">Task added to list.</p>`;
             toastImg.innerHTML = `<img data-img="toastImg" style="width: 15px;" 
             src="img/check-solid.svg" class="rounded mr-2" alt="">`
             //Showing and Hiding Toast automatically -JQuery
