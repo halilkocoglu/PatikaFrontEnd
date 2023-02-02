@@ -8,7 +8,7 @@ type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span class=" font-weight-bold" aria-hidden="true">&times;</span>
 </button>`
 let taskList = !localStorage.getItem('tasks') ?  [] : (localStorage.getItem('tasks').split(','));
-console.log(taskList)
+// console.log(taskList)
 // console.log(taskList.length)
 
 //get the list of tasks in local storage
@@ -46,7 +46,7 @@ async function newElement (){
         if(checkForText(TASK.value)){   //if value is already in the list
             //toast
             toastBody.innerHTML = `<p class= "text-danger">
-            Eklemek istediğiniz görev listede mevcut!!</p>`
+            Task is already in the list!!</p>`
             toastImg.innerHTML = `<img data-img="toastImg" style="width: 5px;" 
             src="img/exclamation-solid.svg" class="rounded mr-2" alt="">`
             //Showing and Hiding Toast automatically -JQuery
@@ -83,7 +83,7 @@ async function newElement (){
     }else if (TASK.value.length <1 ){   // if value length is smaller than one
         // toast
         
-        toastBody.innerHTML = `<p class= "text-danger">Listeye boş ekleme yapamazsınız!!</p>`
+        toastBody.innerHTML = `<p class= "text-danger">You can not add empty task!!</p>`
         toastImg.innerHTML = `<img data-img="toastImg" style="width: 5px;" 
         src="img/exclamation-solid.svg" class="rounded mr-2" alt="">`
         //Showing and Hiding Toast automatically -JQuery
