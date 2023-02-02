@@ -17,8 +17,9 @@ if(taskList.length>0){
         if(checkForText(taskList[i])){
             TASK.value = taskList[i];
             const liDOM = document.createElement('li');
-            liDOM.innerHTML = `<img data-img="toastImg" style="width: 15px;" 
-            src="img/check-solid.svg" class="rounded mr-2 d-none" alt=""><p>${TASK.value}</p> ${collapseBtn}`;
+            liDOM.innerHTML = `<img data-img="checkImg" style="width: 15px;" 
+            src="img/check-solid.svg" class="rounded  d-none" alt="">
+            <p class="text-center text-capitalize">${TASK.value}</p> ${collapseBtn}`;
             liDOM.classList.add('list-group-item','d-flex', 
             'justify-content-between', 'align-items-center');
             liDOM.setAttribute('data-text',TASK.value);
@@ -52,9 +53,9 @@ async function newElement (){
             });
             TASK.value= '';
         }else{          //if value is not in the list, add it to the list
-            liDOM.innerHTML = `<img data-img="toastImg" style="width: 15px;" 
-            src="img/check-solid.svg" class="rounded mr-2 d-none" alt="">
-            <p>${TASK.value}</p> ${collapseBtn}
+            liDOM.innerHTML = `<img data-img="checkImg" style="width: 15px;" 
+            src="img/check-solid.svg" class="rounded d-none " alt="">
+            <p class="float-left d-flex">${TASK.value}</p> ${collapseBtn}
             `;
             liDOM.classList.add('list-group-item','d-flex', 
             'justify-content-between', 'align-items-center');
@@ -63,7 +64,6 @@ async function newElement (){
             taskList.push(TASK.value.trim());
             localStorage.setItem('tasks',(taskList));
             //************************************ */
-
             //toast
             toastBody.innerHTML = `<p class= "text-success">Görev listeye eklendi.</p>`;
             toastImg.innerHTML = `<img data-img="toastImg" style="width: 15px;" 
@@ -108,7 +108,7 @@ if(taskList.length > 0 ){
         taskList.splice(taskList.indexOf(txt.innerText),1);
         this.parentElement.remove();
         localStorage.setItem('tasks',taskList);
-        location.reload();
+
         }    
 }
 
@@ -121,8 +121,9 @@ if(taskList.length > 0 ){
         liItem[i].addEventListener('click', approveTask);
     }
     function approveTask(){
-        let txt = this.parentElement.querySelector('p');
         this.style.backgroundColor = '#9DF1DF';
-        this.style.textDecoration = 'line-through';
+        this.querySelector('p').style.textDecoration = 'line-through';
+        this.querySelector('[data-img="checkImg"]').classList.remove("d-none");
+        localStorage.setItem('tasks',taskList);
         }    
 }
