@@ -3,13 +3,13 @@ let ulEl = document.querySelector('#list');
 const toastEl = document.querySelector('#liveToast');
 const toastBody = document.querySelector('.toast-body');
 const toastImg = document.querySelector('#toast-img');
-let collapseBtn = `<button data-delete="cls" class= "Btn rounded small border-secondary" type="button" class="close" 
-data-dismiss="alert" aria-label="Close">
+let collapseBtn = `<button data-delete="cls" class= "Btn rounded small border-secondary" 
+type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span class=" font-weight-bold" aria-hidden="true">&times;</span>
 </button>`
 let taskList = !localStorage.getItem('tasks') ?  [] : (localStorage.getItem('tasks').split(','));
-console.log(taskList)
-console.log(taskList.length)
+// console.log(taskList)
+// console.log(taskList.length)
 
 //get the list of tasks in local storage
 if(taskList.length>0){
@@ -17,10 +17,12 @@ if(taskList.length>0){
         if(checkForText(taskList[i])){
             TASK.value = taskList[i];
             const liDOM = document.createElement('li');
-            liDOM.innerHTML = `<p>${TASK.value}</p> ${collapseBtn}`;
+            liDOM.innerHTML = `<img data-img="toastImg" style="width: 15px;" 
+            src="img/check-solid.svg" class="rounded mr-2 d-none" alt=""><p>${TASK.value}</p> ${collapseBtn}`;
             liDOM.classList.add('list-group-item','d-flex', 
             'justify-content-between', 'align-items-center');
             liDOM.setAttribute('data-text',TASK.value);
+            liDOM.setAttribute('data-type', 'task');
             ulEl.append(liDOM);
             TASK.value = '';
         }
@@ -42,7 +44,7 @@ async function newElement (){
             //toast
             toastBody.innerHTML = `<p class= "text-danger">
             Eklemek istediğiniz görev listede mevcut!!</p>`
-            toastImg.innerHTML = `<img id="toastImg" style="width: 5px;" 
+            toastImg.innerHTML = `<img data-img="toastImg" style="width: 5px;" 
             src="img/exclamation-solid.svg" class="rounded mr-2" alt="">`
             //Showing and Hiding Toast automatically -JQuery
             $(document).ready(function(){
@@ -50,7 +52,10 @@ async function newElement (){
             });
             TASK.value= '';
         }else{          //if value is not in the list, add it to the list
-            liDOM.innerHTML = `<p>${TASK.value}</p> ${collapseBtn}`;
+            liDOM.innerHTML = `<img data-img="toastImg" style="width: 15px;" 
+            src="img/check-solid.svg" class="rounded mr-2 d-none" alt="">
+            <p>${TASK.value}</p> ${collapseBtn}
+            `;
             liDOM.classList.add('list-group-item','d-flex', 
             'justify-content-between', 'align-items-center');
             liDOM.setAttribute('data-text',TASK.value);
@@ -61,7 +66,7 @@ async function newElement (){
 
             //toast
             toastBody.innerHTML = `<p class= "text-success">Görev listeye eklendi.</p>`;
-            toastImg.innerHTML = `<img id="toastImg" style="width: 15px;" 
+            toastImg.innerHTML = `<img data-img="toastImg" style="width: 15px;" 
             src="img/check-solid.svg" class="rounded mr-2" alt="">`
             //Showing and Hiding Toast automatically -JQuery
             $(document).ready(function(){
@@ -75,8 +80,9 @@ async function newElement (){
         }
     }else if (TASK.value.length <1 ){   // if value length is smaller than one
         // toast
+        
         toastBody.innerHTML = `<p class= "text-danger">Listeye boş ekleme yapamazsınız!!</p>`
-        toastImg.innerHTML = `<img id="toastImg" style="width: 5px;" 
+        toastImg.innerHTML = `<img data-img="toastImg" style="width: 5px;" 
         src="img/exclamation-solid.svg" class="rounded mr-2" alt="">`
         //Showing and Hiding Toast automatically -JQuery
         $(document).ready(function(){
@@ -87,8 +93,6 @@ async function newElement (){
         // toastEl.classList.replace( 'show', 'hide');
         
     }
-    
-    
 }
 
 
@@ -104,5 +108,21 @@ if(taskList.length > 0 ){
         taskList.splice(taskList.indexOf(txt.innerText),1);
         this.parentElement.remove();
         localStorage.setItem('tasks',taskList);
+        location.reload();
+        }    
+}
+
+
+//Check-approve tasks
+if(taskList.length > 0 ){
+    let liItem = document.querySelectorAll(`[data-type="task"]`)
+    let i = 0;
+    for(; i < liItem.length; i++){
+        liItem[i].addEventListener('click', approveTask);
+    }
+    function approveTask(){
+        let txt = this.parentElement.querySelector('p');
+        this.style.backgroundColor = '#9DF1DF';
+        this.style.textDecoration = 'line-through';
         }    
 }
